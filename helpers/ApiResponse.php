@@ -7,8 +7,12 @@
  */
 namespace skeeks\yii2\dadataSuggest\helpers;
 
+use skeeks\yii2\dadataSuggest\DadataSuggestApi;
 use v3toys\v3project\api\Api;
 use yii\base\Component;
+use yii\helpers\Json;
+use yii\httpclient\Request;
+use yii\httpclient\Response;
 
 /**
  * Описание общих полей запросов
@@ -25,7 +29,7 @@ class ApiResponse extends Component
     public $isError = false;
 
     /**
-     * @var Api Сам объект апи
+     * @var DadataSuggestApi Сам объект апи
      */
     public $api;
 
@@ -34,47 +38,21 @@ class ApiResponse extends Component
      */
     public $apiMethod;
 
-
-
+    /**
+     * @var Request
+     */
+    public $httpClientRequest;
 
     /**
-     * @var string полный url запроса
+     * @var Response
      */
-    public $requestUrl;
-
-    /**
-     * @var array переданные параметры
-     */
-    public $requestParams = [];
-
-    /**
-     * @var array метод запроса get или post
-     */
-    public $requestMethod;
-
-    /**
-     * @var объект запроса (Guzzle|Yii2 http client)
-     */
-    public $requestHttpRequest;
-
-
+    public $httpClientResponse;
 
 
     /**
      * @var array ответ апи с которым и надо работать
      */
     public $data;
-
-    /**
-     * @var string оригинальный ответ апи необработанный
-     */
-    public $content;
-
-
-    /**
-     * @var int Server response code
-     */
-    public $statusCode;
 
 
 
@@ -84,15 +62,48 @@ class ApiResponse extends Component
     public $errorMessage = '';
 
     /**
-     * @var код об ошибке
+     * @var string код об ошибке
      */
     public $errorCode;
 
     /**
-     * @var данные об ошибке
+     * @var array данные об ошибке
      */
     public $errorData;
 
+    /**
+     * Небольшая логика обработки ответа
+     */
+    public function init()
+    {
+        /*try
+        {
+            $dataResponse           = (array) Json::decode($this->httpClientResponse->content);
+            $this->data             = $dataResponse;
+
+        } catch (\Exception $e)
+        {
+            \Yii::error("Json api response error: " . $e->getMessage() . ". Response: \n{$this->httpClientResponse->content}", self::className());
+
+            $this->isError       = true;
+            $this->errorMessage  = $e->getMessage();
+            $this->errorCode     = $e->getCode();
+        }*/
+
+        $this->data = $this->httpClientResponse->data;
+
+        if (!$this->httpClientResponse->isOk)
+        {
+            \Yii::error($this->httpClientResponse->content, self::className());
+
+            $this->isError       = true;
+            $this->errorMessage  = $this->api->getMessageByStatusCode($this->httpClientResponse->statusCode);
+            $this->errorCode     = $this->httpClientResponse->statusCode;
+            $this->errorData     = $this->data;
+
+            return;
+        }
+    }
 
     /**
      * @return bool

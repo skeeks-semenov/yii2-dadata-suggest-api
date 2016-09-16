@@ -57,21 +57,28 @@ Examples
 ----------
 
 ### Адресные подсказки
-
 ```php
 $response = \Yii::$app->dadataSuggest->send('/rs/suggest/address', [
     'query' => 'Хабар',
     'count' => 10
 ]);
 
+print_r($response->httpClientRequest->url);     //Full api url
+print_r($response->httpClientRequest->data);    //Request data
+print_r($response->httpClientRequest->method);  //Request method
+print_r($response->httpClientRequest->headers); //Request headers
+
+print_r($response->httpClientResponse->statusCode); //Server response code
+print_r($response->httpClientResponse->content);    //Original api response
+
 if ($response->isError)
 {
-    print_r($response->errorMessage);
+    print_r($response->errorMessage); //Расшифровка кода
     print_r($response->errorData);
     print_r($response->errorCode);
 } else
 {
-    print_r($response->data);
+    print_r($response->data); //Array response data
 }
 ```
 
@@ -80,23 +87,6 @@ if ($response->isError)
 $response = \Yii::$app->dadataSuggest->detectAddressByIp(\Yii::$app->request->userIP);
 ```
 
-```php
-$response = \Yii::$app->dadataSuggest->getAddress([
-    'query' => 'Хабар',
-    'count' => 10
-]);
-
-if ($response->isError)
-{
-    print_r($response->errorMessage);
-    print_r($response->errorData);
-    print_r($response->errorCode);
-} else
-{
-    print_r($response->data);
-}
-
-```
 
 ### Подсказки email
 ```php
@@ -104,18 +94,6 @@ $response = \Yii::$app->dadataSuggest->getEmail([
     'query' => 'info@',
     'count' => 10
 ]);
-
-if ($response->isError)
-{
-    print_r($response->errorMessage);
-    print_r($response->errorData);
-    print_r($response->errorCode);
-} else
-{
-    print_r($response->data);
-}
-
-
 ```
 
 ### Подсказки фио
@@ -124,17 +102,6 @@ $response = \Yii::$app->dadataSuggest->getFio([
     'query' => 'Семен',
     'count' => 10
 ]);
-
-if ($response->isError)
-{
-    print_r($response->errorMessage);
-    print_r($response->errorData);
-    print_r($response->errorCode);
-} else
-{
-    print_r($response->data);
-}
-
 ```
 ___
 

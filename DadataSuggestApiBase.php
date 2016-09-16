@@ -13,6 +13,7 @@ use yii\base\Component;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\httpclient\Client;
+use yii\httpclient\Request;
 
 /**
  * @see https://dadata.ru/api/suggest/
@@ -56,6 +57,7 @@ abstract class DadataSuggestApiBase extends Component
         '400'   =>  'Некорректный запрос',
         '401'   =>  'В запросе отсутствует API-ключ',
         '403'   =>  'В запросе указан несуществующий API-ключ',
+        '404'   =>  'Запрошенный метод апи не существует',
         '405'   =>  'Запрос сделан с методом, отличным от POST',
         '413'   =>  'Нарушены ограничения',
         '500'   =>  'Произошла внутренняя ошибка сервиса во время обработки',
@@ -66,7 +68,7 @@ abstract class DadataSuggestApiBase extends Component
      * @param array $params
      * @param string $requestMethod
      *
-     * @return $this
+     * @return Request
      */
     public function _createHttpRequest($apiMethod, array $params = [], $requestMethod = "POST")
     {
@@ -98,6 +100,7 @@ abstract class DadataSuggestApiBase extends Component
         {
             return $request;
         }
+
         throw new \InvalidArgumentException("Method {$requestMethod} not allow");
     }
 
@@ -112,42 +115,14 @@ abstract class DadataSuggestApiBase extends Component
         $requestMethod = strtoupper($requestMethod);
 
         $httpRequest        = $this->_createHttpRequest($apiMethod, $params, $requestMethod);
-        $response           = $httpRequest->send();
+        $httpResponse       = $httpRequest->send();
 
         $apiResponse = new ApiResponse([
-            'api'               => $this,
-            'requestUrl'        => $this->baseUrl . $apiMethod,
-            'requestHttpRequest'=> $httpRequest,
-            'requestParams'     => $params,
-            'apiMethod'         => $apiMethod,
-            'requestMethod'     => $requestMethod,
-        ]);;
-
-        try
-        {
-            $dataResponse                   = (array) Json::decode($response->content);
-            $apiResponse->data              = $dataResponse;
-
-        } catch (\Exception $e)
-        {
-            \Yii::error("Json api response error: " . $e->getMessage() . ". Response: \n{$response->content}", self::className());
-            $apiResponse->isError       = true;
-            $apiResponse->errorMessage = $e->getMessage();
-            $apiResponse->errorCode = $e->getCode();
-        }
-
-        $apiResponse->statusCode     = $response->statusCode;
-        $apiResponse->content        = $response->content;
-
-        if (!$response->isOk)
-        {
-            \Yii::error($response->content, self::className());
-
-            $apiResponse->isError       = true;
-            $apiResponse->errorMessage  = ArrayHelper::getValue(static::$errorStatuses, $response->statusCode);
-            $apiResponse->errorCode     = $apiResponse->statusCode;
-            $apiResponse->errorData     = $apiResponse->data;
-        }
+            'api'                   => $this,
+            'httpClientRequest'     => $httpRequest,
+            'httpClientResponse'    => $httpResponse,
+            'apiMethod'             => $apiMethod,
+        ]);
 
         return $apiResponse;
     }
@@ -166,5 +141,15 @@ abstract class DadataSuggestApiBase extends Component
     public function getBaseUrl()
     {
         return $this->apiUrl . $this->version;
+    }
+
+    /**
+     * @param $httpStatusCode
+     *
+     * @return string
+     */
+    public function getMessageByStatusCode($httpStatusCode)
+    {
+        return (string) ArrayHelper::getValue(static::$errorStatuses, (string) $httpStatusCode);
     }
 }
