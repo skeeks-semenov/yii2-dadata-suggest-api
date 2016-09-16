@@ -8,8 +8,8 @@
 namespace skeeks\yii2\dadataSuggest;
 
 use skeeks\cms\helpers\StringHelper;
-use v3toys\v3project\api\helpers\ApiResponseError;
-use v3toys\v3project\api\helpers\ApiResponseOk;
+use skeeks\yii2\dadataSuggest\helpers\ApiResponseError;
+use skeeks\yii2\dadataSuggest\helpers\ApiResponseOk;
 use yii\base\Component;
 use yii\helpers\Json;
 use yii\httpclient\Client;
