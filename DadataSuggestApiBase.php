@@ -61,6 +61,45 @@ abstract class DadataSuggestApiBase extends Component
         '500'   =>  'Произошла внутренняя ошибка сервиса во время обработки',
     ];
 
+    /**
+     * @param $apiMethod
+     * @param array $params
+     * @param string $requestMethod
+     *
+     * @return $this
+     */
+    public function _createHttpRequest($apiMethod, array $params = [], $requestMethod = "POST")
+    {
+        $apiUrl = $this->baseUrl . $apiMethod;
+        $client     = new Client();
+
+        if ($requestMethod == "POST")
+        {
+            $client->requestConfig = ['format' => Client::FORMAT_JSON];
+        }
+
+        $request    = $client
+            ->createRequest()
+            ->setUrl($apiUrl)
+            ->setMethod($requestMethod)
+            ->addHeaders(['Authorization' => "Token " . $this->authorization_token])
+            ->addHeaders(['Accept' => 'application/json'])
+            ->setData($params)
+            ->setOptions([
+                'timeout' => $this->timeout
+            ])
+        ;
+
+        if ($requestMethod == "POST")
+        {
+            return $request->addHeaders(['Content-type' => 'application/json']);
+
+        } else if ($requestMethod == "GET")
+        {
+            return $request;
+        }
+        throw new \InvalidArgumentException("Method {$requestMethod} not allow");
+    }
 
     /**
      * @param $apiMethod            вызываемый метод, список приведен далее, пример /rs/suggest/address
@@ -68,36 +107,20 @@ abstract class DadataSuggestApiBase extends Component
      *
      * @return ApiResponse
      */
-    public function sendPost($apiMethod, array $params = [])
+    public function send($apiMethod, array $params = [], $requestMethod = "POST")
     {
-        $apiUrl = $this->baseUrl . $apiMethod;
+        $requestMethod = strtoupper($requestMethod);
 
-        $client = new Client([
-            'requestConfig' => [
-                'format' => Client::FORMAT_JSON
-            ]
-        ]);
-
-        $response = $client->createRequest()
-                ->setMethod("POST")
-                ->setUrl($apiUrl)
-                ->addHeaders(['Content-type' => 'application/json'])
-                ->addHeaders(['Accept' => 'application/json'])
-                ->addHeaders(['Authorization' => "Token " . $this->authorization_token])
-                //->addHeaders(['user-agent' => 'JSON-RPC PHP Client'])
-                ->setData($params)
-                ->setOptions([
-                    'timeout' => $this->timeout
-                ])
-            ->send();
-        ;
+        $httpRequest        = $this->_createHttpRequest($apiMethod, $params, $requestMethod);
+        $response           = $httpRequest->send();
 
         $apiResponse = new ApiResponse([
             'api'               => $this,
-            'requestUrl'        => $apiUrl,
+            'requestUrl'        => $this->baseUrl . $apiMethod,
+            'requestHttpRequest'=> $httpRequest,
             'requestParams'     => $params,
             'apiMethod'         => $apiMethod,
-            'requestMethod'     => "POST",
+            'requestMethod'     => $requestMethod,
         ]);;
 
         try

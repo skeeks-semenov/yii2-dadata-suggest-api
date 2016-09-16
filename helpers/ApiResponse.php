@@ -55,7 +55,7 @@ class ApiResponse extends Component
     /**
      * @var объект запроса (Guzzle|Yii2 http client)
      */
-    public $requestObject;
+    public $requestHttpRequest;
 
 
 

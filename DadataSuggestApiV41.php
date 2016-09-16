@@ -16,6 +16,18 @@ class DadataSuggestApiV41 extends DadataSuggestApiBase
     const VERSION = '4_1';
 
     /**
+     * Определяет город по IP-адресу в России. Использует IP-адрес клиента либо значение из параметра ip.
+     * @see https://dadata.ru/api/detect_address_by_ip/
+     * @param $ip
+     *
+     * @return helpers\ApiResponse
+     */
+    public function detectAddressByIp($ip)
+    {
+        return $this->send('/rs/detectAddressByIp', ['ip' => $ip], "GET");
+    }
+
+    /**
      * Адреса
      *
      * @see https://dadata.ru/api/suggest/#response-address
@@ -25,7 +37,7 @@ class DadataSuggestApiV41 extends DadataSuggestApiBase
      */
     public function getAddress($params = [])
     {
-        return $this->sendPost('/rs/suggest/address', $params);
+        return $this->send('/rs/suggest/address', $params);
     }
 
     /**
@@ -38,7 +50,7 @@ class DadataSuggestApiV41 extends DadataSuggestApiBase
      */
     public function getFio($params = [])
     {
-        return $this->sendPost('/rs/suggest/fio', $params);
+        return $this->send('/rs/suggest/fio', $params);
     }
 
     /**
@@ -51,7 +63,7 @@ class DadataSuggestApiV41 extends DadataSuggestApiBase
      */
     public function getParty($params = [])
     {
-        return $this->sendPost('/rs/suggest/party', $params);
+        return $this->send('/rs/suggest/party', $params);
     }
 
 
@@ -65,7 +77,7 @@ class DadataSuggestApiV41 extends DadataSuggestApiBase
      */
     public function getBank($params = [])
     {
-        return $this->sendPost('/rs/suggest/bank', $params);
+        return $this->send('/rs/suggest/bank', $params);
     }
 
     /**
@@ -78,6 +90,6 @@ class DadataSuggestApiV41 extends DadataSuggestApiBase
      */
     public function getEmail($params = [])
     {
-        return $this->sendPost('/rs/suggest/email', $params);
+        return $this->send('/rs/suggest/email', $params);
     }
 }

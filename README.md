@@ -57,8 +57,8 @@ Examples
 ----------
 
 ```php
-
-$response = \Yii::$app->dadataSuggest->sendPost('/rs/suggest/address', [
+//Адресные подсказки
+$response = \Yii::$app->dadataSuggest->send('/rs/suggest/address', [
     'query' => 'Хабар',
     'count' => 10
 ]);
@@ -76,6 +76,11 @@ if ($response->isError)
 
 ```
 
+
+```php
+//Определение положения пользователя по ip
+$response = \Yii::$app->dadataSuggest->detectAddressByIp(\Yii::$app->request->userIP);
+```
 
 ```php
 
