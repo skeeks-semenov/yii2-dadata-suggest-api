@@ -56,8 +56,9 @@ How to use
 Examples
 ----------
 
+### Адресные подсказки
+
 ```php
-//Адресные подсказки
 $response = \Yii::$app->dadataSuggest->send('/rs/suggest/address', [
     'query' => 'Хабар',
     'count' => 10
@@ -72,18 +73,14 @@ if ($response->isError)
 {
     print_r($response->data);
 }
-
-
 ```
 
-
+### Определение положения пользователя по ip
 ```php
-//Определение положения пользователя по ip
 $response = \Yii::$app->dadataSuggest->detectAddressByIp(\Yii::$app->request->userIP);
 ```
 
 ```php
-
 $response = \Yii::$app->dadataSuggest->getAddress([
     'query' => 'Хабар',
     'count' => 10
@@ -99,12 +96,10 @@ if ($response->isError)
     print_r($response->data);
 }
 
-
 ```
 
-
+### Подсказки email
 ```php
-
 $response = \Yii::$app->dadataSuggest->getEmail([
     'query' => 'info@',
     'count' => 10
@@ -123,8 +118,8 @@ if ($response->isError)
 
 ```
 
+### Подсказки фио
 ```php
-
 $response = \Yii::$app->dadataSuggest->getFio([
     'query' => 'Семен',
     'count' => 10
@@ -139,7 +134,6 @@ if ($response->isError)
 {
     print_r($response->data);
 }
-
 
 ```
 ___
