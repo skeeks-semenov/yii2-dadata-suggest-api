@@ -1,0 +1,27 @@
+{
+	"name": "skeeks/yii2-dadata-suggest",
+	"description": "Suggest yii2 api dadata.ru",
+	"keywords": ["yii", "app", "skeeks", "framework", "api"],
+    "homepage": "http://www.skeeks.com/",
+	"type": "yii2-extension",
+	"license": "BSD-3-Clause",
+	"support": {
+        "issues": "http://skeeks.com/",
+        "source": "https://github.com/skeeks-semenov/yii2-dadata-suggest"
+    },
+	"authors": [
+		{
+			"name": "Semenov Alexander",
+			"email": "semenov@skeeks.com"
+		}
+	],
+	"require": {
+		"yiisoft/yii2": "*",
+        "yiisoft/yii2-httpclient": "*"
+	},
+    "autoload": {
+        "psr-4": {
+            "skeeks\\yii2\\dadataSuggest\\": ""
+        }
+    }
+}
