@@ -13,57 +13,86 @@ use yii\base\Component;
 /**
  * Описание общих полей запросов
  *
- * @property bool isError
- * @property bool isOk
+ * @property bool isOk read-only
  *
  * @package skeeks\yii2\dadataSuggest\helpers
  */
-abstract class ApiResponse extends Component
+class ApiResponse extends Component
 {
     /**
-     * @var string
+     * @var bool Ответ апи считается ошибочным или нет
      */
-    public $requestMethod;
+    public $isError = false;
 
     /**
-     * @var string
+     * @var Api Сам объект апи
+     */
+    public $api;
+
+    /**
+     * @var string запрошеный метод апи
+     */
+    public $apiMethod;
+
+
+
+
+    /**
+     * @var string полный url запроса
      */
     public $requestUrl;
 
     /**
-     * @var array
+     * @var array переданные параметры
      */
     public $requestParams = [];
 
+    /**
+     * @var array метод запроса get или post
+     */
+    public $requestMethod;
 
     /**
-     * данные соответствующие методу запроса
-     * @var mixed
+     * @var объект запроса (Guzzle|Yii2 http client)
+     */
+    public $requestObject;
+
+
+
+
+    /**
+     * @var array ответ апи с которым и надо работать
      */
     public $data;
 
     /**
-     * @var string Оригинальный ответ апи
+     * @var string оригинальный ответ апи необработанный
      */
     public $content;
 
 
     /**
-     * Seerver response code
-     * @var int
+     * @var int Server response code
      */
     public $statusCode;
 
-    /**
-     * @var Api
-     */
-    public $api;
+
 
     /**
-     * Ответны запрос ошибочный?
-     * @return bool
+     * @var string сообщение об ошибке
      */
-    abstract public function getIsError();
+    public $errorMessage = '';
+
+    /**
+     * @var код об ошибке
+     */
+    public $errorCode;
+
+    /**
+     * @var данные об ошибке
+     */
+    public $errorData;
+
 
     /**
      * @return bool

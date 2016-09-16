@@ -58,22 +58,83 @@ Examples
 
 ```php
 
-$response = \Yii::$app->dadataSuggest->send('method', [
-    'products_ids' => 217070
+$response = \Yii::$app->dadataSuggest->sendPost('/rs/suggest/address', [
+    'query' => 'Хабар',
+    'count' => 10
 ]);
 
 if ($response->isError)
 {
-    echo $response->error_code;
-    echo $response->error_message;
-}
-
-if ($response->isOk)
+    print_r($response->errorMessage);
+    print_r($response->errorData);
+    print_r($response->errorCode);
+} else
 {
     print_r($response->data);
 }
 
-print_r($response->statusCode);
+
+```
+
+
+```php
+
+$response = \Yii::$app->dadataSuggest->getAddress([
+    'query' => 'Хабар',
+    'count' => 10
+]);
+
+if ($response->isError)
+{
+    print_r($response->errorMessage);
+    print_r($response->errorData);
+    print_r($response->errorCode);
+} else
+{
+    print_r($response->data);
+}
+
+
+```
+
+
+```php
+
+$response = \Yii::$app->dadataSuggest->getEmail([
+    'query' => 'info@',
+    'count' => 10
+]);
+
+if ($response->isError)
+{
+    print_r($response->errorMessage);
+    print_r($response->errorData);
+    print_r($response->errorCode);
+} else
+{
+    print_r($response->data);
+}
+
+
+```
+
+```php
+
+$response = \Yii::$app->dadataSuggest->getFio([
+    'query' => 'Семен',
+    'count' => 10
+]);
+
+if ($response->isError)
+{
+    print_r($response->errorMessage);
+    print_r($response->errorData);
+    print_r($response->errorCode);
+} else
+{
+    print_r($response->data);
+}
+
 
 ```
 ___
