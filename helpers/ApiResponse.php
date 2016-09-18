@@ -76,21 +76,20 @@ class ApiResponse extends Component
      */
     public function init()
     {
-        /*try
+        try
         {
-            $dataResponse           = (array) Json::decode($this->httpClientResponse->content);
-            $this->data             = $dataResponse;
-
+            $this->data = $this->httpClientResponse->data;
         } catch (\Exception $e)
         {
-            \Yii::error("Json api response error: " . $e->getMessage() . ". Response: \n{$this->httpClientResponse->content}", self::className());
+            \Yii::error($this->httpClientResponse->content, self::className());
 
             $this->isError       = true;
-            $this->errorMessage  = $e->getMessage();
-            $this->errorCode     = $e->getCode();
-        }*/
+            $this->errorMessage  = 'Не удалось отформатировать ответ от сервера';
+            $this->errorCode     = $this->httpClientResponse->statusCode;
+            $this->errorData     = $this->data;
 
-        $this->data = $this->httpClientResponse->data;
+            return;
+        }
 
         if (!$this->httpClientResponse->isOk)
         {
