@@ -1,5 +1,5 @@
 {
-	"name": "skeeks/yii2-dadata-suggest",
+	"name": "skeeks/yii2-dadata-suggest-api",
 	"description": "Suggest yii2 api dadata.ru",
 	"keywords": ["yii", "app", "skeeks", "framework", "api"],
     "homepage": "http://www.skeeks.com/",
@@ -7,7 +7,7 @@
 	"license": "BSD-3-Clause",
 	"support": {
         "issues": "http://skeeks.com/",
-        "source": "https://github.com/skeeks-semenov/yii2-dadata-suggest"
+        "source": "https://github.com/skeeks-semenov/yii2-dadata-suggest-api"
     },
 	"authors": [
 		{
