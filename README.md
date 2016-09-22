@@ -41,7 +41,7 @@ How to use
     'components'    =>
     [
     //....
-        'dadataSuggest' =>
+        'dadataSuggestApi' =>
         [
             'class'                 => 'skeeks\yii2\dadataSuggest\DadataSuggestApi',
             'authorization_token'   => 'token',
@@ -58,7 +58,7 @@ Examples
 
 ### Адресные подсказки
 ```php
-$response = \Yii::$app->dadataSuggest->send('/rs/suggest/address', [
+$response = \Yii::$app->dadataSuggestApi->send('/rs/suggest/address', [
     'query' => 'Хабар',
     'count' => 10
 ]);
@@ -84,13 +84,13 @@ if ($response->isError)
 
 ### Определение положения пользователя по ip
 ```php
-$response = \Yii::$app->dadataSuggest->detectAddressByIp(\Yii::$app->request->userIP);
+$response = \Yii::$app->dadataSuggestApi->detectAddressByIp(\Yii::$app->request->userIP);
 ```
 
 
 ### Подсказки email
 ```php
-$response = \Yii::$app->dadataSuggest->getEmail([
+$response = \Yii::$app->dadataSuggestApi->getEmail([
     'query' => 'info@',
     'count' => 10
 ]);
@@ -98,7 +98,7 @@ $response = \Yii::$app->dadataSuggest->getEmail([
 
 ### Подсказки фио
 ```php
-$response = \Yii::$app->dadataSuggest->getFio([
+$response = \Yii::$app->dadataSuggestApi->getFio([
     'query' => 'Семен',
     'count' => 10
 ]);

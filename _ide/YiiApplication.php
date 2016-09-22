@@ -15,7 +15,7 @@ use skeeks\yii2\dadataSuggest\DadataSuggestApiBase;
 use skeeks\yii2\dadataSuggest\DadataSuggestApiV41;
 
 /**
- * @property DadataSuggestApiBase|DadataSuggestApiV41|DadataSuggestApi    $dadataSuggest
+ * @property DadataSuggestApiBase|DadataSuggestApiV41|DadataSuggestApi    $dadataSuggestApi
  *
  * Class Application
  * @package yii\web
