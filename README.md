@@ -15,7 +15,7 @@ add to composer.json
 "repositories": [
     {
         "type": "git",
-        "url":  "https://github.com/skeeks-semenov/yii2-dadata-suggest.git"
+        "url":  "https://github.com/skeeks-semenov/yii2-dadata-suggest-api.git"
     }
 ],
 ```
@@ -23,13 +23,13 @@ add to composer.json
 Either run
 
 ```
-php composer.phar require --prefer-dist skeeks/yii2-dadata-suggest "*"
+php composer.phar require --prefer-dist skeeks/yii2-dadata-suggest-api "*"
 ```
 
 or add
 
 ```
-"skeeks/yii2-dadata-suggest": "*"
+"skeeks/yii2-dadata-suggest-api": "*"
 ```
 
 How to use
