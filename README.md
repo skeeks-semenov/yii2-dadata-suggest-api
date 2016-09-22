@@ -43,7 +43,7 @@ How to use
     //....
         'dadataSuggestApi' =>
         [
-            'class'                 => 'skeeks\yii2\dadataSuggest\DadataSuggestApi',
+            'class'                 => 'skeeks\yii2\dadataSuggestApi\DadataSuggestApi',
             'authorization_token'   => 'token',
             'timeout'               => 12,
         ],

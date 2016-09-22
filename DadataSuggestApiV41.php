@@ -5,7 +5,7 @@
  * @copyright 2010 SkeekS (СкикС)
  * @date 15.09.2016
  */
-namespace skeeks\yii2\dadataSuggest;
+namespace skeeks\yii2\dadataSuggestApi;
 /**
  * Class ApiV5
  *

@@ -5,10 +5,10 @@
  * @copyright 2010 SkeekS (СкикС)
  * @date 15.09.2016
  */
-namespace skeeks\yii2\dadataSuggest;
+namespace skeeks\yii2\dadataSuggestApi;
 
 use skeeks\cms\helpers\StringHelper;
-use skeeks\yii2\dadataSuggest\helpers\ApiResponse;
+use skeeks\yii2\dadataSuggestApi\helpers\ApiResponse;
 use yii\base\Component;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
@@ -23,7 +23,7 @@ use yii\httpclient\Request;
  *
  * Class DadataSuggestApiBase
  *
- * @package skeeks\yii2\dadataSuggest
+ * @package skeeks\yii2\dadataSuggestApi
  */
 abstract class DadataSuggestApiBase extends Component
 {

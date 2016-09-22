@@ -10,9 +10,9 @@
  */
 
 namespace yii\web;
-use skeeks\yii2\dadataSuggest\DadataSuggestApi;
-use skeeks\yii2\dadataSuggest\DadataSuggestApiBase;
-use skeeks\yii2\dadataSuggest\DadataSuggestApiV41;
+use skeeks\yii2\dadataSuggestApi\DadataSuggestApi;
+use skeeks\yii2\dadataSuggestApi\DadataSuggestApiBase;
+use skeeks\yii2\dadataSuggestApi\DadataSuggestApiV41;
 
 /**
  * @property DadataSuggestApiBase|DadataSuggestApiV41|DadataSuggestApi    $dadataSuggestApi

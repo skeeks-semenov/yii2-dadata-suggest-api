@@ -5,9 +5,9 @@
  * @copyright 2010 SkeekS (СкикС)
  * @date 15.07.2016
  */
-namespace skeeks\yii2\dadataSuggest\helpers;
+namespace skeeks\yii2\dadataSuggestApi\helpers;
 
-use skeeks\yii2\dadataSuggest\DadataSuggestApi;
+use skeeks\yii2\dadataSuggestApi\DadataSuggestApi;
 use v3toys\v3project\api\Api;
 use yii\base\Component;
 use yii\helpers\Json;
@@ -19,7 +19,7 @@ use yii\httpclient\Response;
  *
  * @property bool isOk read-only
  *
- * @package skeeks\yii2\dadataSuggest\helpers
+ * @package skeeks\yii2\dadataSuggestApi\helpers
  */
 class ApiResponse extends Component
 {
