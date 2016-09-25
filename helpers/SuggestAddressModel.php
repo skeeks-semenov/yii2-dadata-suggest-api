@@ -2,7 +2,7 @@
 /**
  * @author Semenov Alexander <semenov@skeeks.com>
  * @link http://skeeks.com/
- * @copyright 2010 SkeekS (ÑêèêÑ)
+ * @copyright 2010 SkeekS (Ð¡ÐºÐ¸ÐºÐ¡)
  * @date 22.09.2016
  */
 namespace skeeks\yii2\dadataSuggestApi\helpers;
@@ -16,17 +16,17 @@ use yii\helpers\ArrayHelper;
  * {
     "suggestions": [
         {
-            "value": "ã Ìîñêâà, óë Õàáàðîâñêàÿ",
-            "unrestricted_value": "ã Ìîñêâà, óë Õàáàðîâñêàÿ",
+            "value": "Ð³ ÐœÐ¾ÑÐºÐ²Ð°, ÑƒÐ» Ð¥Ð°Ð±Ð°Ñ€Ð¾Ð²ÑÐºÐ°Ñ",
+            "unrestricted_value": "Ð³ ÐœÐ¾ÑÐºÐ²Ð°, ÑƒÐ» Ð¥Ð°Ð±Ð°Ñ€Ð¾Ð²ÑÐºÐ°Ñ",
             "data": {
                 "postal_code": null,
-                "country": "Ðîññèÿ",
+                "country": "Ð Ð¾ÑÑÐ¸Ñ",
                 "region_fias_id": "0c5b2444-70a0-4932-980c-b4dc0d3f02b5",
                 "region_kladr_id": "7700000000000",
-                "region_with_type": "ã Ìîñêâà",
-                "region_type": "ã",
-                "region_type_full": "ãîðîä",
-                "region": "Ìîñêâà",
+                "region_with_type": "Ð³ ÐœÐ¾ÑÐºÐ²Ð°",
+                "region_type": "Ð³",
+                "region_type_full": "Ð³Ð¾Ñ€Ð¾Ð´",
+                "region": "ÐœÐ¾ÑÐºÐ²Ð°",
                 "area_fias_id": null,
                 "area_kladr_id": null,
                 "area_with_type": null,
@@ -35,10 +35,10 @@ use yii\helpers\ArrayHelper;
                 "area": null,
                 "city_fias_id": "0c5b2444-70a0-4932-980c-b4dc0d3f02b5",
                 "city_kladr_id": "7700000000000",
-                "city_with_type": "ã Ìîñêâà",
-                "city_type": "ã",
-                "city_type_full": "ãîðîä",
-                "city": "Ìîñêâà",
+                "city_with_type": "Ð³ ÐœÐ¾ÑÐºÐ²Ð°",
+                "city_type": "Ð³",
+                "city_type_full": "Ð³Ð¾Ñ€Ð¾Ð´",
+                "city": "ÐœÐ¾ÑÐºÐ²Ð°",
                 "city_area": null,
                 "city_district": null,
                 "settlement_fias_id": null,
@@ -49,10 +49,10 @@ use yii\helpers\ArrayHelper;
                 "settlement": null,
                 "street_fias_id": "32fcb102-2a50-44c9-a00e-806420f448ea",
                 "street_kladr_id": "77000000000713400",
-                "street_with_type": "óë Õàáàðîâñêàÿ",
-                "street_type": "óë",
-                "street_type_full": "óëèöà",
-                "street": "Õàáàðîâñêàÿ",
+                "street_with_type": "ÑƒÐ» Ð¥Ð°Ð±Ð°Ñ€Ð¾Ð²ÑÐºÐ°Ñ",
+                "street_type": "ÑƒÐ»",
+                "street_type_full": "ÑƒÐ»Ð¸Ñ†Ð°",
+                "street": "Ð¥Ð°Ð±Ð°Ñ€Ð¾Ð²ÑÐºÐ°Ñ",
                 "house_fias_id": null,
                 "house_kladr_id": null,
                 "house_type": null,
@@ -102,12 +102,12 @@ use yii\helpers\ArrayHelper;
 class SuggestAddressModel extends Model
 {
     /**
-     * @var string Àäðåñ îäíîé ñòðîêîé (êàê ïîêàçûâàåòñÿ â ñïèñêå ïîäñêàçîê)
+     * @var string ÐÐ´Ñ€ÐµÑ Ð¾Ð´Ð½Ð¾Ð¹ ÑÑ‚Ñ€Ð¾ÐºÐ¾Ð¹ (ÐºÐ°Ðº Ð¿Ð¾ÐºÐ°Ð·Ñ‹Ð²Ð°ÐµÑ‚ÑÑ Ð² ÑÐ¿Ð¸ÑÐºÐµ Ð¿Ð¾Ð´ÑÐºÐ°Ð·Ð¾Ðº)
      */
     public $value;
 
     /**
-     * @var string Àäðåñ îäíîé ñòðîêîé (ïîëíûé, îò ðåãèîíà)
+     * @var string ÐÐ´Ñ€ÐµÑ Ð¾Ð´Ð½Ð¾Ð¹ ÑÑ‚Ñ€Ð¾ÐºÐ¾Ð¹ (Ð¿Ð¾Ð»Ð½Ñ‹Ð¹, Ð¾Ñ‚ Ñ€ÐµÐ³Ð¸Ð¾Ð½Ð°)
      */
     public $unrestricted_value;
 
@@ -117,9 +117,9 @@ class SuggestAddressModel extends Model
     public $data;
 
     /**
-     * Ïîëíûé àäðåñ îäíîé ñòðîêîé
+     * ÐŸÐ¾Ð»Ð½Ñ‹Ð¹ Ð°Ð´Ñ€ÐµÑ Ð¾Ð´Ð½Ð¾Ð¹ ÑÑ‚Ñ€Ð¾ÐºÐ¾Ð¹
      *
-     * @return string Àäðåñ îäíîé ñòðîêîé (ïîëíûé, îò ðåãèîíà)
+     * @return string ÐÐ´Ñ€ÐµÑ Ð¾Ð´Ð½Ð¾Ð¹ ÑÑ‚Ñ€Ð¾ÐºÐ¾Ð¹ (Ð¿Ð¾Ð»Ð½Ñ‹Ð¹, Ð¾Ñ‚ Ñ€ÐµÐ³Ð¸Ð¾Ð½Ð°)
      */
     public function getUnrestrictedValue()
     {
@@ -128,7 +128,7 @@ class SuggestAddressModel extends Model
             return $this->unrestricted_value;
         }
 
-        //Îíî ìîæåò áûòü íå ñîõðàíåíî åñëè îïðåäåëÿëè ïî ip
+        //ÐžÐ½Ð¾ Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ð½Ðµ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð¾ ÐµÑÐ»Ð¸ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÑÐ»Ð¸ Ð¿Ð¾ ip
         $result = [];
 
         $result[] = ArrayHelper::getValue($this->data, 'region_with_type');
@@ -151,14 +151,14 @@ class SuggestAddressModel extends Model
     }
 
     /**
-     * Ñòðîêà ðåãèîíà, áåç àäðåñà
-     * Ðåãèîí, ðàéîí, ãîðîä, ïîñåëåíèå
+     * Ð¡Ñ‚Ñ€Ð¾ÐºÐ° Ñ€ÐµÐ³Ð¸Ð¾Ð½Ð°, Ð±ÐµÐ· Ð°Ð´Ñ€ÐµÑÐ°
+     * Ð ÐµÐ³Ð¸Ð¾Ð½, Ñ€Ð°Ð¹Ð¾Ð½, Ð³Ð¾Ñ€Ð¾Ð´, Ð¿Ð¾ÑÐµÐ»ÐµÐ½Ð¸Ðµ
      *
      * @return string
      */
     public function getRegionString()
     {
-        //Îíî ìîæåò áûòü íå ñîõðàíåíî åñëè îïðåäåëÿëè ïî ip
+        //ÐžÐ½Ð¾ Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ð½Ðµ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð¾ ÐµÑÐ»Ð¸ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÑÐ»Ð¸ Ð¿Ð¾ ip
         $result = [];
 
         $result[] = ArrayHelper::getValue($this->data, 'region_with_type');
@@ -209,14 +209,14 @@ class SuggestAddressModel extends Model
     }
 
     /**
-     * Êîðîòêèé àäðåñ, áåç ãîðîäà
-     * Óëèöà, äîì, êâàðòèðà
+     * ÐšÐ¾Ñ€Ð¾Ñ‚ÐºÐ¸Ð¹ Ð°Ð´Ñ€ÐµÑ, Ð±ÐµÐ· Ð³Ð¾Ñ€Ð¾Ð´Ð°
+     * Ð£Ð»Ð¸Ñ†Ð°, Ð´Ð¾Ð¼, ÐºÐ²Ð°Ñ€Ñ‚Ð¸Ñ€Ð°
      *
      * @return string
      */
     public function getShortAddressString()
     {
-        //Îíî ìîæåò áûòü íå ñîõðàíåíî åñëè îïðåäåëÿëè ïî ip
+        //ÐžÐ½Ð¾ Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ð½Ðµ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð¾ ÐµÑÐ»Ð¸ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÑÐ»Ð¸ Ð¿Ð¾ ip
         $result = [];
 
         $result[] = ArrayHelper::getValue($this->data, 'street_with_type');
