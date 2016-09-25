@@ -93,6 +93,7 @@ use yii\helpers\ArrayHelper;
 }
  *
  * @property string $unrestrictedValue
+ * @property string $regionString
  *
  * Class SuggestAddressModel
  * @package skeeks\yii2\dadataSuggestApi\helpers
@@ -132,6 +133,32 @@ class SuggestAddressModel extends Model
         $result[] = ArrayHelper::getValue($this->data, 'city_with_type');
         $result[] = ArrayHelper::getValue($this->data, 'settlement_with_type');
         $result[] = ArrayHelper::getValue($this->data, 'street_with_type');
+
+        $result = array_unique($result);
+
+        foreach ($result as $key => $value)
+        {
+            if (!$value)
+            {
+                unset($result[$key]);
+            }
+        }
+
+        return implode(", ", $result);
+    }
+
+    /**
+     * @return string
+     */
+    public function getRegionString()
+    {
+        //ќно может быть не сохранено если определ€ли по ip
+        $result = [];
+
+        $result[] = ArrayHelper::getValue($this->data, 'region_with_type');
+        $result[] = ArrayHelper::getValue($this->data, 'area_with_type');
+        $result[] = ArrayHelper::getValue($this->data, 'city_with_type');
+        $result[] = ArrayHelper::getValue($this->data, 'settlement_with_type');
 
         $result = array_unique($result);
 
