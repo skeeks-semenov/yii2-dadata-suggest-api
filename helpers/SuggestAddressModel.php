@@ -94,6 +94,7 @@ use yii\helpers\ArrayHelper;
  *
  * @property string $unrestrictedValue
  * @property string $regionString
+ * @property string $shortAddressString
  *
  * Class SuggestAddressModel
  * @package skeeks\yii2\dadataSuggestApi\helpers
@@ -116,6 +117,8 @@ class SuggestAddressModel extends Model
     public $data;
 
     /**
+     * Полный адрес одной строкой
+     *
      * @return string Адрес одной строкой (полный, от региона)
      */
     public function getUnrestrictedValue()
@@ -148,6 +151,9 @@ class SuggestAddressModel extends Model
     }
 
     /**
+     * Строка региона, без адреса
+     * Регион, район, город, поселение
+     *
      * @return string
      */
     public function getRegionString()
@@ -159,6 +165,70 @@ class SuggestAddressModel extends Model
         $result[] = ArrayHelper::getValue($this->data, 'area_with_type');
         $result[] = ArrayHelper::getValue($this->data, 'city_with_type');
         $result[] = ArrayHelper::getValue($this->data, 'settlement_with_type');
+
+        $result = array_unique($result);
+
+        foreach ($result as $key => $value)
+        {
+            if (!$value)
+            {
+                unset($result[$key]);
+            }
+        }
+
+        return implode(", ", $result);
+    }
+
+    /**
+     * @return array
+     */
+    public function getRegionArray()
+    {
+        $result = [];
+
+        if (ArrayHelper::getValue($this->data, 'region'))
+        {
+            $result['region'] = ArrayHelper::getValue($this->data, 'region');
+        }
+
+        if (ArrayHelper::getValue($this->data, 'area'))
+        {
+            $result['area'] = ArrayHelper::getValue($this->data, 'area');
+        }
+
+        if (ArrayHelper::getValue($this->data, 'city'))
+        {
+            $result['city'] = ArrayHelper::getValue($this->data, 'city');
+        }
+        if (ArrayHelper::getValue($this->data, 'settlement'))
+        {
+            $result['settlement'] = ArrayHelper::getValue($this->data, 'settlement');
+        }
+
+        return $result;
+    }
+
+    /**
+     * Короткий адрес, без города
+     * Улица, дом, квартира
+     *
+     * @return string
+     */
+    public function getShortAddressString()
+    {
+        //Оно может быть не сохранено если определяли по ip
+        $result = [];
+
+        $result[] = ArrayHelper::getValue($this->data, 'street_with_type');
+
+        if (ArrayHelper::getValue($this->data, 'house'))
+        {
+            $result[] = ArrayHelper::getValue($this->data, 'house_type') . " " . ArrayHelper::getValue($this->data, 'house');
+        }
+        if (ArrayHelper::getValue($this->data, 'flat'))
+        {
+            $result[] = ArrayHelper::getValue($this->data, 'flat_type') . " " . ArrayHelper::getValue($this->data, 'flat');
+        }
 
         $result = array_unique($result);
 
