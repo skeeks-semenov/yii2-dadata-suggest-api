@@ -13,7 +13,7 @@ use yii\httpclient\Client;
 use yii\httpclient\JsonFormatter;
 
 /**
- * TODO: Дописать, добавить проверки
+ * TODO: Дописать, добавить проверки и кэш
  *
  * @property array|null $coordinates
  *
