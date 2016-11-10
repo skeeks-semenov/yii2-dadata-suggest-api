@@ -95,6 +95,7 @@ use yii\helpers\ArrayHelper;
  * @property string $unrestrictedValue
  * @property string $regionString
  * @property string $shortAddressString
+ * @property array|null $coordinates
  *
  * Class SuggestAddressModel
  * @package skeeks\yii2\dadataSuggestApi\helpers
@@ -148,6 +149,14 @@ class SuggestAddressModel extends Model
         }
 
         return implode(", ", $result);
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->unrestrictedValue;
     }
 
     /**
@@ -241,5 +250,18 @@ class SuggestAddressModel extends Model
         }
 
         return implode(", ", $result);
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getCoordinates()
+    {
+        if (ArrayHelper::getValue($this->data, 'geo_lat') && ArrayHelper::getValue($this->data, 'geo_lon'))
+        {
+            return [(float) ArrayHelper::getValue($this->data, 'geo_lat'), (float) ArrayHelper::getValue($this->data, 'geo_lon')];
+        }
+
+        return null;
     }
 }

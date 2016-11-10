@@ -1,6 +1,10 @@
 CHANGELOG
 ==============
 
+1.0.0-rc
+-----------------
+  * Yandex deocde api
+
 1.0.0-beta
 -----------------
   * updated
