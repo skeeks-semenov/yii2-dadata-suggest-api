@@ -2,7 +2,7 @@
 /**
  * @author Semenov Alexander <semenov@skeeks.com>
  * @link http://skeeks.com/
- * @copyright 2010 SkeekS (СкикС)
+ * @copyright 2010 SkeekS (РЎРєРёРєРЎ)
  * @date 10.11.2016
  */
 namespace skeeks\yii2\dadataSuggestApi\helpers;
@@ -13,7 +13,7 @@ use yii\httpclient\Client;
 use yii\httpclient\JsonFormatter;
 
 /**
- * TODO: Дописать, добавить проверки и кэш
+ * TODO: Р”РѕРїРёСЃР°С‚СЊ, РґРѕР±Р°РІРёС‚СЊ РїСЂРѕРІРµСЂРєРё Рё РєСЌС€
  *
  * @property array|null $coordinates
  *
@@ -85,7 +85,7 @@ class YandexGecodeHelper extends Component
         return [];
     }
     /**
-     * Полный ответ yandex api
+     * РџРѕР»РЅС‹Р№ РѕС‚РІРµС‚ yandex api
      *
      * @param $address
      *
